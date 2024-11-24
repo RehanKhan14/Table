@@ -1,3 +1,4 @@
-streamlit==1.25.0  # Replace with the latest version if needed
-pandas==2.0.3  # Replace with the latest version if needed
-pytest==7.4.2  # Replace with the latest version if needed
+streamlit==1.25.0  # For building and running the Streamlit app
+pandas==2.0.3      # For data manipulation and table creation
+pytest==7.4.2      # For testing the application
+pyinstaller==5.15.1  # For packaging the app as an executable

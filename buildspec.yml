@@ -6,20 +6,25 @@ phases:
       python: 3.9  # Specify the Python version
     commands:
       - echo Installing dependencies...
-      - pip install -r requirements.txt
+      - pip install -r requirements.txt  # Install all dependencies listed in requirements.txt
+
   pre_build:
     commands:
       - echo Running tests...
-      - pytest tests/
+      - pytest tests/  # Run all tests in the tests/ directory
+
   build:
     commands:
-      - echo Building the Streamlit app...
-      - streamlit run app.py &
+      - echo Building the application...
+      - pyinstaller --onefile --noconsole app.py  # Create a standalone executable
+
   post_build:
     commands:
-      - echo Build complete.
+      - echo Build process complete.
+      - echo Checking for the generated executable...
+      - ls dist/  # Verify that the executable is created in the dist/ folder
 
 artifacts:
   files:
-    - "**/*"
-  discard-paths: yes
+    - dist/app.exe  # Include the generated executable in the build artifacts
+  discard-paths: no
