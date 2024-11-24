@@ -1,0 +1,25 @@
+version: 0.2
+
+phases:
+  install:
+    runtime-versions:
+      python: 3.9  # Specify the Python version
+    commands:
+      - echo Installing dependencies...
+      - pip install -r requirements.txt
+  pre_build:
+    commands:
+      - echo Running tests...
+      - pytest tests/
+  build:
+    commands:
+      - echo Building the Streamlit app...
+      - streamlit run app.py &
+  post_build:
+    commands:
+      - echo Build complete.
+
+artifacts:
+  files:
+    - "**/*"
+  discard-paths: yes
