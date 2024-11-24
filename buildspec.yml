@@ -6,7 +6,11 @@ phases:
       python: 3.12.0  # Specify the Python version
     commands:
       - echo Installing dependencies...
-      - pip install -r requirements.txt  # Install all dependencies listed in requirements.txt
+      - pip install pyinstaller
+      - pip install pytest
+      - pip install streamlit
+      - pip install pandas
+  # Install all dependencies listed in requirements.txt
 
   pre_build:
     commands:
