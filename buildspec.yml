@@ -26,9 +26,9 @@ phases:
     commands:
       - echo Build process complete.
       - echo Checking for the generated executable...
-      - ls dist/  # Verify that the executable is created in the dist/ folder
+        # Verify that the executable is created in the dist/ folder
 
 artifacts:
   files:
-    - dist/app.exe  # Include the generated executable in the build artifacts
+    - app.exe  # Include the generated executable in the build artifacts
   discard-paths: no
