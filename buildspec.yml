@@ -6,29 +6,30 @@ phases:
       python: 3.12.0  # Specify the Python version
     commands:
       - echo Installing dependencies...
+      - pip install --upgrade pip
       - pip install pyinstaller
       - pip install pytest
       - pip install streamlit
       - pip install pandas
-  # Install all dependencies listed in requirements.txt
 
   pre_build:
     commands:
       - echo Running tests...
-      - pytest tests/  # Run all tests in the tests/ directory
+      - pytest tests/ || { echo 'Tests failed'; exit 1; }  # Run all tests in the tests/ directory
 
   build:
     commands:
       - echo Building the application...
-      - pyinstaller --onefile --noconsole app.py  # Create a standalone executable
+      - pyinstaller --onefile --noconsole app.py || { echo 'Build failed'; exit 1; }  # Create a standalone executable
 
   post_build:
     commands:
       - echo Build process complete.
-      - echo Checking for the generated executable...
-        # Verify that the executable is created in the dist/ folder
+      - echo Listing files in dist directory...
+      - ls dist/  # Verify the contents of the 'dist' folder
 
 artifacts:
   files:
-    - app.exe  # Include the generated executable in the build artifacts
+    - dist/**  # Include all files from the 'dist' directory
+  base-directory: dist  # Specify the base directory where artifacts are located
   discard-paths: no
